@@ -1,0 +1,70 @@
+{
+  "name": "ts-lib-starter",
+  "version": "0.0.0",
+  "description": "Typescript library starter",
+  "main": "dist/index.js",
+  "module": "dist/--libraryname--.es5.js",
+  "typings": "dist/types/--libraryname--.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": {
+    "name": "Alex Feinstein",
+    "url": "https://github.com/psxcode"
+  },
+  "homepage": "https://github.com/psxcode/ts-lib-starter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psxcode/ts-lib-starter"
+  },
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "lint": "tslint -t codeFrame 'src/**/*.ts'",
+    "test": "nyc npm run mocha && npm run report",
+    "test:watch": "npm run mocha -- --watch",
+    "report": "opn ./coverage/lcov-report/index.html",
+    "build": "npm run clean:build && npm run rollup",
+    "clean:build": "rimraf dist",
+    "clean": "rimraf dist coverage .rpt2_cache .nyc_output",
+    "mocha": "mocha --opts mocha.opts",
+    "rollup": "rollup -c rollup.config.js"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^8.0.47",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "opn-cli": "^3.1.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.50.0",
+    "rollup-plugin-typescript2": "^0.8.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "sinon": "^4.1.1",
+    "source-map-support": "^0.5.0",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0",
+    "tslint-config-prettier": "^1.6.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.6.1"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.spec.ts"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "all": true
+  }
+}
