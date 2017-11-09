@@ -21,7 +21,7 @@
   "private": false,
   "scripts": {
     "lint": "tslint -t codeFrame -p tsconfig.lint.json",
-    "test": "npm run clean:test && npm run test:once",
+    "test": "npm run test:once",
     "test:once": "nyc npm run mocha",
     "test:watch": "npm run mocha -- --watch",
     "test:coverage:generate": "nyc report --reporter=json",
