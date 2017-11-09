@@ -30,7 +30,7 @@
     "mocha": "mocha --opts mocha.opts",
     "rollup": "rollup -c rollup.config.js",
     "commit": "git-cz",
-    "release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
     "@types/chai": "^4.0.4",
