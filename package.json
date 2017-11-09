@@ -21,17 +21,19 @@
   "private": false,
   "scripts": {
     "lint": "tslint -t codeFrame -p tsconfig.lint.json",
-    "test": "nyc npm run mocha",
+    "test": "npm run clean:test && npm run test:once",
+    "test:once": "nyc npm run mocha",
     "test:watch": "npm run mocha -- --watch",
-    "report-coverage": "nyc report --reporter=json && codecov -f coverage/*.json",
+    "test:coverage:generate": "nyc report --reporter=json",
+    "test:coverage:report": "codecov -f coverage/*.json",
     "build": "npm run clean:build && npm run rollup",
     "clean:build": "rimraf dist",
-    "clean": "rimraf dist coverage .rpt2_cache .nyc_output",
-    "mocha": "mocha --opts mocha.opts",
-    "rollup": "rollup -c rollup.config.js",
+    "clean:test": "rimraf coverage .rpt2_cache .nyc_output",
     "commit": "git-cz",
-    "prepush": "npm run test",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "prepush": "npm test",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "mocha": "mocha --opts mocha.opts",
+    "rollup": "rollup -c rollup.config.js"
   },
   "devDependencies": {
     "@types/chai": "^4.0.4",
