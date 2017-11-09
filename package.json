@@ -30,6 +30,7 @@
     "mocha": "mocha --opts mocha.opts",
     "rollup": "rollup -c rollup.config.js",
     "commit": "git-cz",
+    "precommit": "npm run test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
@@ -75,5 +76,8 @@
       "text-summary"
     ],
     "all": true
+  },
+  "dependencies": {
+    "husky": "^0.14.3"
   }
 }
