@@ -3,8 +3,8 @@
   "version": "0.0.0-development",
   "description": "Typescript library starter",
   "main": "dist/index.js",
-  "module": "dist/--libraryname--.es5.js",
-  "typings": "dist/types/--libraryname--.d.ts",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
