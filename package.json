@@ -30,7 +30,7 @@
     "mocha": "mocha --opts mocha.opts",
     "rollup": "rollup -c rollup.config.js",
     "commit": "git-cz",
-    "precommit": "npm run test",
+    "prepush": "npm run test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
