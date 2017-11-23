@@ -26,38 +26,41 @@
     "test:watch": "npm run mocha -- --watch",
     "test:coverage:generate": "nyc report --reporter=json",
     "test:coverage:report": "codecov -f coverage/*.json",
-    "build": "npm run clean:build && npm run rollup",
+    "build": "npm run clean:build && npm run webpack",
     "clean:build": "rimraf dist",
-    "clean:test": "rimraf coverage .rpt2_cache .nyc_output",
+    "clean:test": "rimraf coverage .nyc_output",
     "commit": "git-cz",
     "prepush": "npm test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "mocha": "mocha --opts mocha.opts",
-    "rollup": "rollup -c rollup.config.js"
+    "mocha": "mocha-webpack --opts mocha.opts",
+    "webpack": "webpack"
   },
   "devDependencies": {
     "@types/chai": "^4.0.4",
     "@types/mocha": "^2.2.44",
     "@types/node": "^8.0.47",
+    "@types/sinon": "^4.0.0",
     "chai": "^4.1.2",
     "codecov": "^3.0.0",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^0.14.3",
+    "istanbul-instrumenter-loader": "^3.0.0",
     "mocha": "^4.0.1",
+    "mocha-webpack": "^1.0.1",
     "nyc": "^11.3.0",
     "opn-cli": "^3.1.0",
     "rimraf": "^2.6.2",
-    "rollup": "^0.50.0",
-    "rollup-plugin-typescript2": "^0.8.0",
-    "rollup-plugin-uglify": "^2.0.1",
     "semantic-release": "^8.2.0",
     "sinon": "^4.1.1",
     "source-map-support": "^0.5.0",
-    "ts-node": "^3.3.0",
+    "ts-loader": "^3.1.1",
     "tslint": "^5.8.0",
     "tslint-config-standard": "^7.0.0",
-    "typescript": "^2.6.1"
+    "tslint-loader": "^3.5.3",
+    "typescript": "^2.6.1",
+    "webpack": "^3.8.1",
+    "webpack-node-externals": "^1.6.0"
   },
   "config": {
     "commitizen": {
@@ -65,12 +68,6 @@
     }
   },
   "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "include": [
-      "src/*.ts"
-    ],
     "exclude": [
       "**/*.d.ts",
       "**/*.spec.ts"
@@ -79,6 +76,7 @@
       "lcov",
       "text-summary"
     ],
-    "all": true
+    "instrument": false,
+    "sourceMap": false
   }
 }

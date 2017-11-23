@@ -1,6 +1,5 @@
 --ui bdd
 --recursive
---require tshook.js
---require source-map-support/register
---watch-extensions ts
-src/*.spec.ts
+--webpack-env 'test'
+--webpack-config 'webpack.test.js'
+'src/**/*.spec.ts'
