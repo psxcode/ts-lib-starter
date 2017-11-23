@@ -1,16 +1,16 @@
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
-const path = require('path')
+const { resolve } = require('path')
 
 module.exports = (env) => {
 
   return {
-    entry: './src/index.ts',
+    entry: resolve('src', 'index.ts'),
     target: 'node',
 
     output: {
       filename: 'index.js',
-      path: path.resolve(__dirname, 'dist'),
+      path: resolve('dist'),
 
       // use absolute paths in sourcemaps (important for debugging via IDE)
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
@@ -30,7 +30,7 @@ module.exports = (env) => {
         // instrument only testing sources with Istanbul, after ts-loader runs
         {
           test: /\.(js|ts)/,
-          include: path.resolve('src'),
+          include: resolve('src'),
           exclude: /node_modules/,
           enforce: 'post',
           use: {

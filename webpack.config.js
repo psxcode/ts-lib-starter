@@ -1,19 +1,16 @@
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
-const path = require('path')
+const { resolve } = require('path')
 
 module.exports = (env) => {
-  const isNode = env === 'node'
 
   return {
-    entry: './src/index.ts',
-    target: isNode ? 'node' : 'web',
+    entry: resolve('src', 'index.ts'),
+    target: 'node',
 
     output: {
       filename: 'index.js',
-      path: path.resolve(__dirname, 'dist'),
-      libraryTarget: 'var',
-      library: 'SDK',
+      path: resolve('dist'),
 
       // use absolute paths in sourcemaps (important for debugging via IDE)
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
@@ -32,7 +29,7 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.ts$/,
-          include: path.resolve('src'),
+          include: resolve('src'),
           exclude: /node_modules/,
           use: {
             loader: 'ts-loader',
@@ -41,7 +38,7 @@ module.exports = (env) => {
       ]
     },
 
-    externals: [].concat(isNode ? nodeExternals() : []),
+    externals: [],
     plugins: [],
     devtool: "inline-cheap-module-source-map"
   }
